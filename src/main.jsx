@@ -15,7 +15,6 @@ import {
   Plus,
   RotateCcw,
   Search,
-  Share2,
   ShieldCheck,
   ShoppingBag,
   Sparkles,
@@ -23,6 +22,7 @@ import {
   Tag,
   ThumbsUp,
   Truck,
+  Upload,
   Zap,
 } from 'lucide-react';
 import './styles.css';
@@ -62,7 +62,6 @@ const recommendedProducts = [
 const PRODUCT_PATH = '/product/galaxy-s25-ultra';
 
 function App() {
-  const [saved, setSaved] = useState(false);
   const [qty, setQty] = useState(1);
 
   useProductCardRouting();
@@ -72,7 +71,7 @@ function App() {
     <div className="prototype-stage">
       <div className="device-frame noon-device" aria-label="375 by 812 pixel Noon PDP prototype">
         <main className="noon-pdp">
-          <FloatingHeader saved={saved} onSave={() => setSaved((value) => !value)} />
+          <TopNav />
 
           <section className="noon-hero" aria-label="Product media">
             <img className="noon-product" src="/figma-assets/product.png" alt="Anker USB C charger" />
@@ -889,21 +888,21 @@ function useProductCardRouting() {
   }, []);
 }
 
-function FloatingHeader({ saved, onSave }) {
+function TopNav() {
   return (
-    <header className="floating-header" aria-label="Product controls">
-      <button className="round-action" aria-label="Back">
+    <header className="top-nav" aria-label="Product header">
+      <button type="button" className="top-nav-btn" aria-label="Back">
         <ChevronLeft size={20} />
       </button>
-      <div className="header-actions">
-        <button className="round-action" aria-label="Search">
+      <div className="top-nav-actions">
+        <button type="button" className="top-nav-btn" aria-label="Search">
           <Search size={18} />
         </button>
-        <button className={`round-action ${saved ? 'is-saved' : ''}`} onClick={onSave} aria-label="Wishlist">
-          <Heart size={18} fill={saved ? 'currentColor' : 'none'} />
+        <button type="button" className="top-nav-btn" aria-label="Wishlist">
+          <Heart size={20} />
         </button>
-        <button className="round-action" aria-label="Share">
-          <Share2 size={18} />
+        <button type="button" className="top-nav-btn" aria-label="Share">
+          <Upload size={18} />
         </button>
       </div>
     </header>
