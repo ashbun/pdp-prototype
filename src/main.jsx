@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Heart,
   Info,
+  Plus,
   RotateCcw,
   Search,
   Share2,
@@ -36,6 +37,19 @@ const comboItems = [
     discount: '33%',
     image: '/figma-assets/combo-airpods.png',
   },
+];
+
+const colourOptions = [
+  { name: '735 GaN', image: '/figma-assets/product.png' },
+  { name: '735 GaN II', image: '/figma-assets/product.png', selected: true },
+  { name: '736 GaN II', image: '/figma-assets/product.png' },
+  { name: '736 GaN III', image: '/figma-assets/product.png', disabled: true },
+];
+
+const recommendedProducts = [
+  { tag: 'Best Seller', image: '/figma-assets/combo-airpods.png' },
+  { image: '/figma-assets/combo-airpods.png' },
+  { image: '/figma-assets/combo-airpods.png' },
 ];
 
 const PRODUCT_PATH = '/product/galaxy-s25-ultra';
@@ -232,6 +246,8 @@ function App() {
               <ChevronRight size={18} />
             </button>
           </section>
+
+          <PdpBottomSections />
         </main>
       </div>
       <Retune force position="bottom-left" />
@@ -241,6 +257,142 @@ function App() {
 
 function DirhamSymbol() {
   return <span className="dirham-symbol" aria-label="AED">{'\uE001'}</span>;
+}
+
+function PdpBottomSections() {
+  return (
+    <div className="figma-bottom-sections" aria-label="Additional product sections">
+      <section className="free-gifts-card" aria-label="Free gifts for you">
+        <h2>Free gifts for you</h2>
+        <div className="gift-carousel">
+          <article className="gift-card">
+            <div className="gift-image">
+              <img src="/figma-assets/gift-hamper.png" alt="" />
+              <span>Free</span>
+            </div>
+            <div className="gift-copy">
+              <h3>Pepsi Gift Hamper</h3>
+              <p>Pack of 6 cans &amp; Hoodie or tote bag</p>
+              <a href="#">
+                View eligible products
+                <ChevronRight size={14} />
+              </a>
+            </div>
+          </article>
+          <article className="gift-card gift-card-small" aria-label="Another free Pepsi gift hamper">
+            <div className="gift-image">
+              <img src="/figma-assets/gift-hamper.png" alt="" />
+              <span>Free</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="choice-card" aria-label="Product choices">
+        <ChoiceGroup title="Versions" action="Learn more" options={['UK 3 PIN', 'US 2 PIN']} />
+        <ChoiceGroup title="Charger Model" action="Size Guide" options={['UK 3 PIN', 'US 2 PIN']} />
+
+        <div className="choice-heading">
+          <h2>Colour</h2>
+          <a href="#">View All</a>
+        </div>
+        <div className="colour-scroller" role="list">
+          {colourOptions.map((option) => (
+            <button className={`colour-option ${option.selected ? 'is-selected' : ''}`} key={option.name} type="button">
+              <span className="colour-image">
+                <img src={option.image} alt="" />
+                {option.disabled && <b>OUT OF STOCK</b>}
+              </span>
+              <span>{option.name}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="payment-offers-card" aria-label="Payment offers">
+        <h2>Payment offers</h2>
+        <div className="payment-offer-row">
+          <article className="cashback-card">
+            <span className="noon-card-art">noon</span>
+            <p>
+              <strong>Get extra 5% cashback</strong> using ENBD noon VISA credit card
+              <a href="#">Apply Now</a>
+            </p>
+          </article>
+          <article className="tabby-card">
+            <img src="/figma-assets/tabby-badge.png" alt="tabby" />
+          </article>
+        </div>
+      </section>
+
+      <section className="top-products-card" aria-label="Top products in chargers">
+        <h2>
+          Top Products in <a href="#">“chargers”</a>
+        </h2>
+        <div className="top-products-scroller">
+          {recommendedProducts.map((product, index) => (
+            <article className="recommend-card" key={index}>
+              <div className="recommend-image">
+                {product.tag && <span className="recommend-tag">{product.tag}</span>}
+                <button type="button" aria-label="Add to wishlist">
+                  <Heart size={15} />
+                </button>
+                <img src={product.image} alt="" />
+                <span className="ad-pill-static">Ad</span>
+                <button className="recommend-add" type="button" aria-label="Add to cart">
+                  <Plus size={20} />
+                </button>
+              </div>
+              <div className="recommend-copy">
+                <p>Apple Airpods Pro 2 Wireless Earbuds</p>
+                <span className="recommend-rating">
+                  <Star size={10} fill="currentColor" />
+                  <strong>4.3</strong> (128)
+                </span>
+                <div className="recommend-price">
+                  <strong>
+                    <DirhamSymbol />899
+                  </strong>
+                  <del>1399</del>
+                  <span>33%</span>
+                </div>
+                <span className="recommend-nudge">
+                  <Zap size={11} fill="currentColor" />
+                  Lowest price in 30...
+                </span>
+                <span className="eta-pill">
+                  <b>express</b>
+                  Today
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function ChoiceGroup({ title, action, options }) {
+  return (
+    <div className="choice-group">
+      <div className="choice-heading">
+        <h2>{title}</h2>
+        <a href="#">
+          {action === 'Learn more' && <Info size={13} />}
+          {action}
+          {action !== 'Learn more' && <ChevronRight size={14} />}
+        </a>
+      </div>
+      <div className="choice-options">
+        {options.map((option, index) => (
+          <button className={index === 0 ? 'is-selected' : ''} key={option} type="button">
+            {option}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function useInitialDeliveryScroll() {
