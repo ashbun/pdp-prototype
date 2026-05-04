@@ -1,0 +1,177 @@
+{
+  "version": 2,
+  "tokens": {
+    "colors": {
+      "colour.text-n-icon.primary": {
+        "value": "#1d2539",
+        "variable": "--colour-text-n-icon-primary"
+      },
+      "colour.text-n-icon.secondary": {
+        "value": "#475067",
+        "variable": "--colour-text-n-icon-secondary"
+      },
+      "colour.text-n-icon.tertiary": {
+        "value": "#666d85",
+        "variable": "--colour-text-n-icon-tertiary"
+      },
+      "colour.text-n-icon.muted": {
+        "value": "#989fb3",
+        "variable": "--colour-text-n-icon-muted"
+      },
+      "colour.text-n-icon.on-surface-bold": {
+        "value": "#ffffff",
+        "variable": "--colour-text-n-icon-on-surface-bold"
+      },
+      "colour.text-n-icon.action": {
+        "value": "#0f61ff",
+        "variable": "--colour-text-n-icon-action"
+      },
+      "colour.surface.primary": {
+        "value": "#ffffff",
+        "variable": "--colour-surface-primary"
+      },
+      "colour.surface.secondary": {
+        "value": "#f9f9fb",
+        "variable": "--colour-surface-secondary"
+      },
+      "colour.surface.tertiary": {
+        "value": "#f2f3f7",
+        "variable": "--colour-surface-tertiary"
+      },
+      "colour.surface.muted": {
+        "value": "#eaecf0",
+        "variable": "--colour-surface-muted"
+      },
+      "colour.surface.action-subtle": {
+        "value": "#ebf4ff",
+        "variable": "--colour-surface-action-subtle"
+      },
+      "colour.surface.action-bold": {
+        "value": "#0f7eff",
+        "variable": "--colour-surface-action-bold"
+      },
+      "colour.surface.action-extrabold": {
+        "value": "#0f61ff",
+        "variable": "--colour-surface-action-extrabold"
+      },
+      "colour.surface.brand-primary": {
+        "value": "#feee00",
+        "variable": "--colour-surface-brand-primary"
+      },
+      "colour.border.primary": {
+        "value": "#eaecf0",
+        "variable": "--colour-border-primary"
+      },
+      "colour.border.subtle": {
+        "value": "#f2f3f7",
+        "variable": "--colour-border-subtle"
+      },
+      "colour.border.bold": {
+        "value": "#d0d4dd",
+        "variable": "--colour-border-bold"
+      },
+      "colour.border.action": {
+        "value": "#bddbff",
+        "variable": "--colour-border-action"
+      }
+    },
+    "typography": {
+      "base.font.family.primary": {
+        "value": "\"Noontree\", ui-sans-serif, system-ui, sans-serif",
+        "variable": "--font-family-primary"
+      },
+      "Heading/H32/Bold": {
+        "value": "700 32px / 40px Noontree",
+        "variable": "--font-heading-h32-bold"
+      },
+      "Heading/H28/Bold": {
+        "value": "700 28px / 36px Noontree",
+        "variable": "--font-heading-h28-bold"
+      },
+      "Heading/H24/Bold": {
+        "value": "700 24px / 32px Noontree",
+        "variable": "--font-heading-h24-bold"
+      },
+      "Heading/H16/Bold": {
+        "value": "700 16px / 20px Noontree",
+        "variable": "--font-heading-h16-bold"
+      },
+      "Body/B14/Regular": {
+        "value": "400 14px / 18px Noontree",
+        "variable": "--font-body-b14-regular"
+      },
+      "Body/B14/SemiBold": {
+        "value": "600 14px / 18px Noontree",
+        "variable": "--font-body-b14-semibold"
+      },
+      "Body/B12/SemiBold": {
+        "value": "600 12px / 16px Noontree",
+        "variable": "--font-body-b12-semibold"
+      },
+      "Action/A17/SemiBold": {
+        "value": "600 17px / 24px Noontree",
+        "variable": "--font-action-a17-semibold"
+      },
+      "Action/A14/SemiBold": {
+        "value": "600 14px / 20px Noontree",
+        "variable": "--font-action-a14-semibold"
+      }
+    },
+    "spacing": {
+      "space.8": {
+        "value": "8px",
+        "variable": "--space-8"
+      },
+      "space.12": {
+        "value": "12px",
+        "variable": "--space-12"
+      },
+      "space.16": {
+        "value": "16px",
+        "variable": "--space-16"
+      },
+      "space.20": {
+        "value": "20px",
+        "variable": "--space-20"
+      },
+      "space.24": {
+        "value": "24px",
+        "variable": "--space-24"
+      }
+    },
+    "radii": {
+      "radius.8": {
+        "value": "8px",
+        "variable": "--radius-8"
+      },
+      "radius.10": {
+        "value": "10px",
+        "variable": "--radius-10"
+      },
+      "radius.12": {
+        "value": "12px",
+        "variable": "--radius-12"
+      },
+      "radius.rounded": {
+        "value": "9999px",
+        "variable": "--radius-rounded"
+      }
+    }
+  },
+  "components": {
+    "PrimaryAction": {
+      "displayName": "Primary action button",
+      "file": "src/main.jsx",
+      "props": {
+        "state": {
+          "type": "enum",
+          "values": ["Default", "Pressed"]
+        },
+        "size": {
+          "type": "enum",
+          "values": ["H56"]
+        }
+      }
+    }
+  }
+}
