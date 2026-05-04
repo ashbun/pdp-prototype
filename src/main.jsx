@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Retune } from 'retune';
 import {
   AlertTriangle,
+  ArrowDownCircle,
   Calendar,
   CheckCircle2,
   ChevronDown,
@@ -405,17 +406,41 @@ function PdpBottomSections() {
 
       <section className="product-details-card" aria-label="Product details">
         <h2>Product Details</h2>
-        <details className="detail-item">
-          <summary>Overview</summary>
-          <p>Complete product overview and description</p>
+        <details className="detail-item" open>
+          <summary>
+            <span>Overview</span>
+            <ChevronDown size={20} className="detail-chev" />
+          </summary>
+          <div className="detail-content">
+            <p className="detail-overview">
+              A compact, high-performance wall charger built with GaN (Gallium Nitride) technology for faster, cooler, and more efficient charging. With 65W output, it can power laptops, tablets, and smartphones at top speed.
+            </p>
+            <ul className="detail-bullets">
+              <li>Power 3 devices at once with 2 USB-C ports and one USB-A port</li>
+              <li>Connect a single device to charge at up to 65W.</li>
+              <li>Charge Up to 30 Minutes Faster: Our exclusive PowerIQ 4.0 technology</li>
+              <li>Greener with GaN: The amount of power saved could be up to 796.39 million kWh per year</li>
+              <li>ActiveShield 2.0: Anker&apos;s proprietary technology enhances protection by intelligently monitoring temperature</li>
+            </ul>
+          </div>
         </details>
         <details className="detail-item">
-          <summary>Highlights</summary>
-          <p>Key product highlights and features</p>
+          <summary>
+            <span>Highlights</span>
+            <ChevronDown size={20} className="detail-chev" />
+          </summary>
+          <div className="detail-content">
+            <p>Key product highlights and features</p>
+          </div>
         </details>
         <details className="detail-item">
-          <summary>Specifications</summary>
-          <p>Technical specifications and details</p>
+          <summary>
+            <span>Specifications</span>
+            <ChevronDown size={20} className="detail-chev" />
+          </summary>
+          <div className="detail-content">
+            <p>Technical specifications and details</p>
+          </div>
         </details>
       </section>
 
@@ -439,9 +464,11 @@ function PdpBottomSections() {
       </section>
 
       <section className="bestseller-card" aria-label="Bestseller in chargers">
-        <div className="bestseller-badge">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M16 2L19 6L24 5L25 10L29 13L26 17L29 21L24 24L23 29L18 28L16 32L14 28L9 29L8 24L3 21L6 17L3 13L7 10L8 5L13 6L16 2Z" fill="#0a4f4a"/>
+        <div className="bestseller-badge" aria-hidden="true">
+          <svg width="36" height="44" viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 22L1 36L8 33L11 40L16 28" fill="#0a4f4a"/>
+            <path d="M30 22L35 36L28 33L25 40L20 28" fill="#0a4f4a"/>
+            <circle cx="18" cy="16" r="14" fill="#0a4f4a"/>
           </svg>
           <span className="bestseller-rank">1</span>
         </div>
@@ -723,7 +750,7 @@ function PdpBottomSections() {
                   <span className="similar-discount">33%</span>
                 </div>
                 <span className="similar-nudge">
-                  <Zap size={11} fill="currentColor" />
+                  <ArrowDownCircle size={12} fill="#d92d20" color="#ffffff" />
                   Lowest price in 30 days
                 </span>
                 <span className="similar-eta">
