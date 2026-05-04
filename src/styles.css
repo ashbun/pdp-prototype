@@ -708,8 +708,9 @@ details p {
   display: flex;
   justify-content: space-between;
   left: 0;
+  margin-bottom: -64px;
   padding: var(--space-16) 12px 8px;
-  position: absolute;
+  position: sticky;
   top: 0;
   width: 100%;
   z-index: 10;
