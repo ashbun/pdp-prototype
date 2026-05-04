@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Retune } from 'retune';
 import {
+  AlertTriangle,
+  Calendar,
+  CheckCircle2,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  Droplet,
   Heart,
   Info,
   Plus,
@@ -13,8 +17,10 @@ import {
   Share2,
   ShieldCheck,
   ShoppingBag,
+  Sparkles,
   Star,
   Tag,
+  ThumbsUp,
   Truck,
   Zap,
 } from 'lucide-react';
@@ -56,6 +62,7 @@ const PRODUCT_PATH = '/product/galaxy-s25-ultra';
 
 function App() {
   const [saved, setSaved] = useState(false);
+  const [qty, setQty] = useState(1);
 
   useProductCardRouting();
   useInitialDeliveryScroll();
@@ -155,13 +162,17 @@ function App() {
 
               <div className="coupon-row" aria-label="Available promotions">
                 <span className="coupon-chip">
-                  <Zap size={14} />
-                  Extra 15%, CODE: ENDD15
+                  <span className="coupon-icon">%</span>
+                  <span className="coupon-text">
+                    Extra 15%, CODE: ENDD15
+                  </span>
                   <ChevronRight size={13} />
                 </span>
                 <span className="coupon-chip">
-                  <Truck size={14} />
-                  Extra 10% off up to <DirhamSymbol />150
+                  <span className="coupon-icon">%</span>
+                  <span className="coupon-text">
+                    Extra 10% off up to <DirhamSymbol />150
+                  </span>
                 </span>
               </div>
 
@@ -249,6 +260,7 @@ function App() {
 
           <PdpBottomSections />
         </main>
+        <BottomNav qty={qty} onQtyChange={setQty} />
       </div>
       <Retune force position="bottom-left" />
     </div>
@@ -327,7 +339,7 @@ function PdpBottomSections() {
 
       <section className="top-products-card" aria-label="Top products in chargers">
         <h2>
-          Top Products in <a href="#">“chargers”</a>
+          Top Products in <a href="#">chargers</a>
         </h2>
         <div className="top-products-scroller">
           {recommendedProducts.map((product, index) => (
@@ -344,22 +356,26 @@ function PdpBottomSections() {
                 </button>
               </div>
               <div className="recommend-copy">
-                <p>Apple Airpods Pro 2 Wireless Earbuds</p>
-                <span className="recommend-rating">
-                  <Star size={10} fill="currentColor" />
-                  <strong>4.3</strong> (128)
-                </span>
-                <div className="recommend-price">
-                  <strong>
-                    <DirhamSymbol />899
-                  </strong>
-                  <del>1399</del>
-                  <span>33%</span>
+                <div className="recommend-rating-section">
+                  <p className="recommend-product-name">Apple Airpods Pro 2 Wireless Earbuds</p>
+                  <span className="recommend-rating">
+                    <Star size={10} fill="currentColor" />
+                    <strong>4.3</strong> <span>(128)</span>
+                  </span>
                 </div>
-                <span className="recommend-nudge">
-                  <Zap size={11} fill="currentColor" />
-                  Lowest price in 30...
-                </span>
+                <div className="recommend-pricing-section">
+                  <div className="recommend-price">
+                    <strong>
+                      <DirhamSymbol />899
+                    </strong>
+                    <del>1399</del>
+                    <span>33%</span>
+                  </div>
+                  <span className="recommend-nudge">
+                    <Zap size={11} fill="currentColor" />
+                    Lowest price in 30...
+                  </span>
+                </div>
                 <span className="eta-pill">
                   <b>express</b>
                   Today
@@ -367,6 +383,417 @@ function PdpBottomSections() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="benefits-section" aria-label="Product benefits">
+        <div className="benefits-grid">
+          <div className="benefit-item">
+            <Star size={20} />
+            <span>High Rated</span>
+          </div>
+          <div className="benefit-item">
+            <RotateCcw size={20} />
+            <span>Low &amp; Easy Returns</span>
+          </div>
+          <div className="benefit-item">
+            <ShieldCheck size={20} />
+            <span>Secure Transaction</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="product-details-card" aria-label="Product details">
+        <h2>Product Details</h2>
+        <details className="detail-item">
+          <summary>Overview</summary>
+          <p>Complete product overview and description</p>
+        </details>
+        <details className="detail-item">
+          <summary>Highlights</summary>
+          <p>Key product highlights and features</p>
+        </details>
+        <details className="detail-item">
+          <summary>Specifications</summary>
+          <p>Technical specifications and details</p>
+        </details>
+      </section>
+
+      <section className="additional-info-card" aria-label="Additional information">
+        <h2>Additional Information</h2>
+        <div className="info-item">
+          <Info size={16} />
+          <span>Not eligible for return</span>
+          <ChevronRight size={16} />
+        </div>
+        <div className="info-item">
+          <Truck size={16} />
+          <span>Free delivery with Lockers &amp; Pickup</span>
+          <ChevronRight size={16} />
+        </div>
+        <div className="info-item">
+          <ShieldCheck size={16} />
+          <span>1 year warranty applicable</span>
+          <ChevronRight size={16} />
+        </div>
+      </section>
+
+      <section className="bestseller-card" aria-label="Bestseller in chargers">
+        <div className="bestseller-badge">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 2L19 6L24 5L25 10L29 13L26 17L29 21L24 24L23 29L18 28L16 32L14 28L9 29L8 24L3 21L6 17L3 13L7 10L8 5L13 6L16 2Z" fill="#0a4f4a"/>
+          </svg>
+          <span className="bestseller-rank">1</span>
+        </div>
+        <div className="bestseller-copy">
+          <p className="bestseller-title">
+            <strong>Bestseller #1</strong>
+            <span> in </span>
+            <span className="bestseller-category">Chargers</span>
+          </p>
+          <p className="bestseller-explore">Explore other bestsellers</p>
+        </div>
+        <ChevronRight size={20} className="bestseller-chev" />
+      </section>
+
+      <section className="seller-widget-card" aria-label="Seller information">
+        <div className="seller-top">
+          <div className="seller-info">
+            <div className="seller-logo" aria-hidden="true">A</div>
+            <div className="seller-meta">
+              <div className="seller-name-row">
+                <span>Sold by</span>
+                <strong>Anker UAE Inc.</strong>
+                <ChevronRight size={16} />
+              </div>
+              <div className="seller-rating-row">
+                <span className="seller-rating">
+                  <Star size={12} fill="currentColor" />
+                  <strong>4.3</strong>
+                  <span className="seller-rating-count">(128)</span>
+                </span>
+                <span className="seller-positive">
+                  <strong>74%</strong> Positive Seller Ratings
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="seller-badges">
+          <span className="seller-chip">
+            <RotateCcw size={14} />
+            Low Return Seller
+          </span>
+          <span className="seller-chip">
+            <Star size={14} fill="currentColor" />
+            Great Recent Ratings
+          </span>
+          <span className="seller-chip">
+            <Star size={14} fill="currentColor" />
+            Partner Since 5+ Years
+          </span>
+          <span className="seller-chip">
+            <Star size={14} fill="currentColor" />
+            Item as Described <strong>100%</strong>
+          </span>
+        </div>
+        <div className="seller-subtitle">
+          This is a placeholder for brands to place subititle
+        </div>
+        <div className="seller-divider" />
+        <div className="seller-other-offers">
+          <Tag size={16} />
+          <p>
+            5 offers from other sellers from <strong>
+              <DirhamSymbol />649
+            </strong>
+          </p>
+          <ChevronRight size={20} />
+        </div>
+      </section>
+
+      <section className="sponsored-brand-card" aria-label="Sponsored brand">
+        <div className="sponsored-brand-header">
+          <div className="sponsored-brand-logo">TECV</div>
+          <div className="sponsored-brand-meta">
+            <p className="sponsored-brand-tagline">Top quality products</p>
+            <div className="sponsored-brand-cta">
+              <a href="#">Shop TECV</a>
+              <ChevronRight size={14} />
+            </div>
+          </div>
+          <span className="sponsored-brand-ad">Ad</span>
+        </div>
+        <div className="sponsored-brand-products">
+          <article className="sponsored-product">
+            <div className="sponsored-product-image">
+              <img src="/figma-assets/combo-airpods.png" alt="" />
+            </div>
+            <div className="sponsored-product-info">
+              <p className="sponsored-product-name">Charging Brick For Apple Devices 25W Charger</p>
+              <strong className="sponsored-product-price"><DirhamSymbol />89</strong>
+              <span className="sponsored-eta">
+                <b>express</b>
+              </span>
+            </div>
+          </article>
+          <article className="sponsored-product">
+            <div className="sponsored-product-image">
+              <img src="/figma-assets/product.png" alt="" />
+            </div>
+            <div className="sponsored-product-info">
+              <p className="sponsored-product-name">Charging Brick For Samsung Devices 25W arger</p>
+              <strong className="sponsored-product-price"><DirhamSymbol />69</strong>
+              <span className="sponsored-eta">
+                <b>express</b>
+              </span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="ratings-reviews-card" aria-label="Ratings and reviews">
+        <h2>Ratings &amp; Reviews</h2>
+        <div className="ratings-overview">
+          <div className="ratings-score-row">
+            <span className="ratings-score">4.8</span>
+            <span className="ratings-stars">
+              <Star size={18} fill="currentColor" />
+              <Star size={18} fill="currentColor" />
+              <Star size={18} fill="currentColor" />
+              <Star size={18} fill="currentColor" />
+              <Star size={18} className="ratings-star-empty" />
+            </span>
+          </div>
+          <p className="ratings-source">
+            Avg. rating based on 64 reviews from trusted sources
+            <Info size={12} />
+          </p>
+        </div>
+
+        <button type="button" className="ai-summary-card">
+          <header className="ai-summary-header">
+            <span className="ai-summary-title">64 reviews,</span>
+            <span className="ai-summary-by">summarised by <strong>noon AI</strong></span>
+            <Sparkles size={13} />
+          </header>
+          <ul className="ai-summary-list">
+            <li><span className="ai-summary-bullet ai-summary-bullet-tall" aria-hidden="true" /><span>The portrait mode includes a fantastic wide-angle</span></li>
+            <li><span className="ai-summary-bullet" aria-hidden="true" /><span>Users appreciate the overall performance of phone.</span></li>
+            <li><span className="ai-summary-bullet" aria-hidden="true" /><span>Enjoy the wide-angle capability while using portrait a fantastic wide-angle</span></li>
+            <li><span className="ai-summary-bullet" aria-hidden="true" /><span>Users appreciate the overall performance of this phone.</span></li>
+          </ul>
+        </button>
+
+        <div className="photo-reviews">
+          <h3>Photo Reviews (64)</h3>
+          <div className="photo-reviews-row">
+            <div className="photo-review-thumb"><img src="/figma-assets/product.png" alt="" /></div>
+            <div className="photo-review-thumb"><img src="/figma-assets/combo-airpods.png" alt="" /></div>
+            <div className="photo-review-thumb"><img src="/figma-assets/product.png" alt="" /></div>
+            <div className="photo-review-thumb"><img src="/figma-assets/combo-airpods.png" alt="" /></div>
+          </div>
+        </div>
+
+        <div className="top-reviews">
+          <h3>Top Reviews (64)</h3>
+          <article className="review-card">
+            <header className="review-header">
+              <div className="review-name-block">
+                <strong className="review-author">John Anderson</strong>
+                <div className="review-rating-row">
+                  <span className="review-stars">
+                    <Star size={13} fill="currentColor" />
+                    <Star size={13} fill="currentColor" />
+                    <Star size={13} fill="currentColor" />
+                    <Star size={13} fill="currentColor" />
+                    <Star size={13} className="ratings-star-empty" />
+                  </span>
+                  <span className="review-meta"><span className="review-dot">•</span> 8 days ago</span>
+                </div>
+              </div>
+              <span className="review-verified">
+                <CheckCircle2 size={11} />
+                Verified Buy
+              </span>
+            </header>
+            <div className="review-tags">
+              <span className="review-tag">Mac OS</span>
+              <span className="review-tag">8 GB RAM</span>
+              <span className="review-tag">Internal Version</span>
+              <span className="review-tag">256 GB</span>
+              <span className="review-tag">Dual core memory</span>
+              <span className="review-tag review-tag-link">
+                View product
+                <ChevronRight size={10} />
+              </span>
+            </div>
+            <div className="review-body">
+              <strong className="review-title">This is simply amazing!</strong>
+              <p className="review-text">
+                If the camera had the wide angle feature in the portrait mode. If the camera has more fe..
+                <a href="#" className="review-more">More</a>
+              </p>
+              <a href="#" className="review-translate">Translate to <span>عربي</span></a>
+              <div className="review-photos">
+                <div className="review-photo"><img src="/figma-assets/product.png" alt="" /></div>
+                <div className="review-photo"><img src="/figma-assets/combo-airpods.png" alt="" /></div>
+              </div>
+            </div>
+            <footer className="review-footer">
+              <button type="button" className="helpful-btn helpful-btn-selected">
+                <ThumbsUp size={11} fill="currentColor" />
+                Helpful (15)
+              </button>
+            </footer>
+          </article>
+
+          <article className="review-card">
+            <header className="review-header">
+              <div className="review-name-block">
+                <strong className="review-author">John Anderson</strong>
+                <div className="review-rating-row">
+                  <span className="review-stars">
+                    <Star size={13} fill="currentColor" />
+                    <Star size={13} fill="currentColor" />
+                    <Star size={13} fill="currentColor" />
+                    <Star size={13} fill="currentColor" />
+                    <Star size={13} fill="currentColor" />
+                  </span>
+                  <span className="review-meta"><span className="review-dot">•</span> from trusted source <span className="review-dot">•</span> 6 months ago</span>
+                </div>
+              </div>
+            </header>
+            <div className="review-tags">
+              <span className="review-tag">Mac OS</span>
+              <span className="review-tag">8 GB RAM</span>
+              <span className="review-tag">Internal Version</span>
+              <span className="review-tag">256 GB</span>
+              <span className="review-tag">Dual core memory</span>
+              <span className="review-tag review-tag-link">
+                View product
+                <ChevronRight size={10} />
+              </span>
+            </div>
+            <div className="review-body">
+              <strong className="review-title">This is simply amazing!</strong>
+              <p className="review-text">
+                If the camera had the wide angle feature in the portrait mode. If the camera has more fewer features than than the last one it will be worse better than others.
+                <a href="#" className="review-more">Less</a>
+              </p>
+              <a href="#" className="review-translate">Translate to <span>عربي</span></a>
+            </div>
+            <footer className="review-footer">
+              <button type="button" className="helpful-btn">
+                <ThumbsUp size={11} />
+                Helpful (14)
+              </button>
+            </footer>
+          </article>
+
+          <a href="#" className="all-reviews-link">
+            All customer reviews
+            <ChevronRight size={12} />
+          </a>
+        </div>
+      </section>
+
+      <section className="similar-products-card" aria-label="Similar products">
+        <h2>Similar Products</h2>
+        <div className="similar-products-row">
+          {[1, 2, 3].map((i) => (
+            <article className="similar-product" key={i}>
+              <div className="similar-image">
+                {i === 1 && <span className="similar-tag">Best Seller</span>}
+                <button type="button" className="similar-wishlist" aria-label="Add to wishlist"><Heart size={14} /></button>
+                <img src="/figma-assets/combo-airpods.png" alt="" />
+                <span className="similar-ad">Ad</span>
+                <button type="button" className="similar-add" aria-label="Add to cart"><Plus size={18} /></button>
+              </div>
+              <div className="similar-info">
+                <p className="similar-name">Apple Airpods Pro 2 Wireless Earbuds</p>
+                <span className="similar-rating">
+                  <Star size={11} fill="currentColor" />
+                  <strong>4.3</strong>
+                  <span>(128)</span>
+                </span>
+                <div className="similar-pricing">
+                  <strong className="similar-price"><DirhamSymbol />899</strong>
+                  <del>1399</del>
+                  <span className="similar-discount">33%</span>
+                </div>
+                <span className="similar-nudge">
+                  <Zap size={11} fill="currentColor" />
+                  Lowest price in 30 days
+                </span>
+                <span className="similar-eta">
+                  <b>express</b>
+                  Today
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="warranty-section" aria-label="Extended warranty">
+        <div className="warranty-header">
+          <h2>Extended warranty</h2>
+          <span className="warranty-by">by <strong>PROTECT 4 LESS</strong></span>
+        </div>
+        <div className="warranty-options">
+          <article className="warranty-option">
+            <span className="warranty-period">1 YEAR</span>
+            <div className="warranty-card-inner">
+              <div className="warranty-name-row">
+                <div className="warranty-creative warranty-creative-shield">
+                  <ShieldCheck size={20} />
+                </div>
+                <div className="warranty-name">
+                  <p>Accidental Damage</p>
+                  <p className="warranty-name-row-2">
+                    <span>Protection</span>
+                    <ChevronRight size={14} />
+                  </p>
+                </div>
+              </div>
+              <ul className="warranty-usps">
+                <li><Calendar size={14} /><span>Active from date of purchase</span></li>
+                <li><Droplet size={14} /><span>Covers liquid damages</span></li>
+                <li><Truck size={14} /><span>Free pickup &amp; delivery</span></li>
+              </ul>
+              <div className="warranty-footer">
+                <span className="warranty-price"><DirhamSymbol />449</span>
+                <button className="select-warranty" type="button">Select</button>
+              </div>
+            </div>
+          </article>
+          <article className="warranty-option">
+            <span className="warranty-period">1 YEAR ACCIDENTAL + 1 YEAR EXTENDED</span>
+            <div className="warranty-card-inner">
+              <div className="warranty-name-row">
+                <div className="warranty-creative warranty-creative-extended">
+                  <ShieldCheck size={20} />
+                </div>
+                <div className="warranty-name">
+                  <p>Accidental Damage &amp;</p>
+                  <p className="warranty-name-row-2">
+                    <span>Extended Warranty</span>
+                    <ChevronRight size={14} />
+                  </p>
+                </div>
+              </div>
+              <ul className="warranty-usps">
+                <li><Calendar size={14} /><span>Active from date of purchase</span></li>
+                <li><AlertTriangle size={14} /><span>Covers all accidental damages</span></li>
+                <li><Truck size={14} /><span>Free pickup &amp; delivery</span></li>
+              </ul>
+              <div className="warranty-footer">
+                <span className="warranty-price"><DirhamSymbol />649</span>
+                <button className="select-warranty" type="button">Select</button>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
     </div>
@@ -453,6 +880,25 @@ function FloatingHeader({ saved, onSave }) {
         </button>
       </div>
     </header>
+  );
+}
+
+function BottomNav({ qty, onQtyChange }) {
+  return (
+    <div className="bottom-nav">
+      <div className="bottom-nav-actions">
+        <div className="qty-input">
+          <span className="qty-label">QTY</span>
+          <span className="qty-value">{qty}</span>
+        </div>
+        <button className="buy-button">Buy now</button>
+        <button className="add-to-cart-button" onClick={() => onQtyChange(qty + 1)}>
+          <Plus size={20} />
+          Add to cart
+        </button>
+      </div>
+      <div className="home-bar" aria-hidden="true" />
+    </div>
   );
 }
 
